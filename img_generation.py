@@ -46,5 +46,3 @@ def check(dirpath):
             print(f"Error: {str(e)}")
 
 
-check(path)
-generate_images(15000, (20, 20), path)
