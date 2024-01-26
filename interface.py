@@ -4,7 +4,8 @@ from tkinter import filedialog
 from PIL import Image
 from finalscript import create_mosaic
 import os
-from img_generation import calculate_average_color, generate_images, check
+from img_generation import generate_images, check
+from lorempicsum import lorem_images
 
 class MosaicApp:
     def __init__(self, master):
@@ -14,13 +15,17 @@ class MosaicApp:
         self.tabControl = ttk.Notebook(master)
         self.tab1 = ttk.Frame(self.tabControl)
         self.tab2 = ttk.Frame(self.tabControl)
+        self.tab3 = ttk.Frame(self.tabControl)
         self.tabControl.add(self.tab1, text="Mosaic Generator")
         self.tabControl.add(self.tab2, text="Single-Color Tile Generator")
+        self.tabControl.add(self.tab3, text="Lorem Picsum Pictures Generator")
         self.tabControl.pack(expand=1, fill="both")
 
         self.setup_mosaic_tab()
 
         self.setup_image_tab()
+
+        self.setup_lorem_tab()
 
     def setup_mosaic_tab(self):
         self.input_image_path = tk.StringVar()
@@ -28,6 +33,17 @@ class MosaicApp:
         self.output_image_path = tk.StringVar()
         self.tile_size = tk.StringVar()
         self.target_region_size = tk.StringVar()
+
+        # Wyświetlanie ścieżki dla pliku wejściowego
+        self.input_path_label = ttk.Label(self.tab1, text="Input Image Path:")
+        self.input_path_label.pack(pady=1)
+
+        self.input_path_scrollbar = ttk.Scrollbar(self.tab1, orient="horizontal")
+        self.input_path_entry = ttk.Entry(self.tab1, textvariable=self.input_image_path, xscrollcommand=self.input_path_scrollbar.set)
+        self.input_path_scrollbar.config(command=self.input_path_entry.xview)
+
+        self.input_path_entry.pack(pady=1, fill="x")
+        self.input_path_scrollbar.pack(fill="x")
 
         # Przyciski do wyboru plików
         self.input_button = tk.Button(self.tab1, text="Select Input Image", command=self.select_input_image)
@@ -152,7 +168,45 @@ class MosaicApp:
 
         return True
 
+    def setup_lorem_tab(self):
+        self.num_lorem_images = tk.StringVar()
+        self.lorem_image_size = tk.StringVar()
+        self.lorem_images_path = tk.StringVar()
+
+        tk.Label(self.tab3, text="Number of Downloaded Images:").pack()
+        self.num_lorem_images_entry = tk.Entry(self.tab3, textvariable=self.num_lorem_images)
+        self.num_lorem_images_entry.pack()
+
+        tk.Label(self.tab3, text="Downloaded Image Size (square):").pack()
+        self.lorem_image_size_entry = tk.Entry(self.tab3, textvariable=self.lorem_image_size)
+        self.lorem_image_size_entry.pack()
+
+        self.lorem_images_path_button = tk.Button(self.tab3, text="Select Folder", command=self.select_lorem_images_path)
+        self.lorem_images_path_button.pack()
+
+        self.lorem_images_button = tk.Button(self.tab3, text="Download Images", command=self.lorem_images)
+        self.lorem_images_button.pack()
+
+    def select_lorem_images_path(self):
+        folder_path = filedialog.askdirectory()
+        self.lorem_images_path.set(folder_path)
+
+    def lorem_images(self):
+        picpath = self.lorem_images_path.get()
+        try:
+            num_images = int(self.num_lorem_images.get())
+            image_size = int(self.lorem_image_size.get())
+        except ValueError:
+            print("Invalid input for Number of Generated Images or Generated Image Size. Please enter valid integers.")
+            return
+
+        check(picpath)
+        lorem_images(num_images, (image_size, image_size), picpath)
+        print(f"{num_images} images generated successfully!")
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = MosaicApp(root)
+    root.geometry("500x300")
+    root.resizable(False, False)
     root.mainloop()

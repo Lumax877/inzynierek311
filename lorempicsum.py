@@ -21,8 +21,8 @@ def calculate_average_color(region):
     avg_color = (r // total_pixels, g // total_pixels, b // total_pixels)
     return avg_color
 
-def generate_images(number, resolution, picpath):
-    for i in range(8215,number):
+def lorem_images(number, resolution, picpath):
+    for i in range(0,number):
         while True:
             try:
                 image_url = f'https://picsum.photos/{resolution[0]}/{resolution[1]}/?random'
@@ -53,4 +53,3 @@ def check(dirpath):
 
 
 
-generate_images(10000, (100,100), path)

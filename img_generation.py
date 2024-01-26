@@ -2,10 +2,11 @@ from PIL import Image
 import random
 import os
 import glob
+import tqdm
 
 path = "venv/generatedimages/script_v1"
 
-# moved average calculation to generation script to avoid unnecessary repetition
+
 def calculate_average_color(region):
     width, height = region.size
     r, g, b = 0, 0, 0
@@ -23,7 +24,7 @@ def calculate_average_color(region):
 
 
 def generate_images(number, resolution, picpath):
-    for i in range(0, number):
+    for i in tqdm.tqdm(range(0, number), desc="Pictures", leave=False):
         color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
         image = Image.new('RGB', resolution, color)
@@ -33,7 +34,6 @@ def generate_images(number, resolution, picpath):
         avg_color_str = "_".join(map(str, avg_color))
 
         image.save(f"{picpath}/image_{i}_{avg_color_str}.png")
-        print(i)
 
 
 def check(dirpath):

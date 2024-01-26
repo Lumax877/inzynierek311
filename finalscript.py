@@ -2,6 +2,8 @@ from PIL import Image
 import os
 import re
 import numpy as np
+import tqdm
+
 
 def load_images_from_directory(directory):
     directory = str(directory)
@@ -50,8 +52,7 @@ def create_mosaic(input_image_path, output_image_path, tile_directory, tile_size
             input_tile = input_image.crop(region)
             input_colors.append(np.array(input_tile).mean(axis=(0, 1)))
 
-    for y in range(0, output_height, tile_size[1]):
-        print(y)
+    for y in tqdm.tqdm(range(0, output_height, tile_size[1]), desc="Rows", leave=False):
         for x in range(0, output_width, tile_size[0]):
             region = (x, y, x + tile_size[0], y + tile_size[1])
             input_tile_color = input_colors.pop(0)
