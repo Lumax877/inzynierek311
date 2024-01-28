@@ -170,7 +170,12 @@ class MosaicApp:
         folder_path = filedialog.askdirectory()
         self.generated_images_path.set(folder_path)
 
+    def is_path_variable_empty(self, path_variable):
+        return not path_variable.get()
+
     def generate_images(self):
+        if self.is_path_variable_empty(self.generated_images_path):
+            return print("Please select a folder to save images in.")
         picpath = self.generated_images_path.get()
         try:
             num_images = int(self.num_generated_images.get())
@@ -239,6 +244,8 @@ class MosaicApp:
         self.lorem_images_path.set(folder_path)
 
     def lorem_images(self):
+        if self.is_path_variable_empty(self.lorem_images_path):
+            return print("Please select a folder to save images in.")
         picpath = self.lorem_images_path.get()
         try:
             num_images = int(self.num_lorem_images.get())
