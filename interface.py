@@ -5,7 +5,7 @@ from finalscript import create_mosaic
 import os
 from img_generation import generate_images, check
 from lorempicsum import lorem_images
-
+from imgprep import process_images_in_folder
 class MosaicApp:
     def __init__(self, master):
         self.master = master
@@ -15,9 +15,11 @@ class MosaicApp:
         self.tab1 = ttk.Frame(self.tabControl)
         self.tab2 = ttk.Frame(self.tabControl)
         self.tab3 = ttk.Frame(self.tabControl)
+        self.tab4 = ttk.Frame(self.tabControl)
         self.tabControl.add(self.tab1, text="Mosaic Generator")
         self.tabControl.add(self.tab2, text="Single-Color Tile Generator")
         self.tabControl.add(self.tab3, text="Lorem Picsum Pictures Generator")
+        self.tabControl.add(self.tab4, text="Custom Images Preparator")
         self.tabControl.pack(expand=1, fill="both")
 
         self.setup_mosaic_tab()
@@ -25,6 +27,8 @@ class MosaicApp:
         self.setup_image_tab()
 
         self.setup_lorem_tab()
+
+        self.setup_prep_tab()
 
     def setup_mosaic_tab(self):
         self.input_image_path = tk.StringVar()
@@ -257,6 +261,36 @@ class MosaicApp:
         check(picpath)
         lorem_images(num_images, (image_size, image_size), picpath)
         print(f"{num_images} images generated successfully!")
+
+    def setup_prep_tab(self):
+        self.prep_folder_path = tk.StringVar()
+
+        self.prep_path_label = ttk.Label(self.tab4, text="Images Folder Path:")
+        self.prep_path_label.pack(pady=1)
+
+        self.prep_path_scrollbar = ttk.Scrollbar(self.tab4, orient="horizontal")
+        self.prep_path_entry = ttk.Entry(self.tab4, textvariable=self.prep_folder_path, xscrollcommand=self.prep_path_scrollbar.set)
+        self.prep_path_scrollbar.config(command=self.prep_path_entry.xview)
+
+        self.prep_path_entry.pack(pady=1, fill="x")
+        self.prep_path_scrollbar.pack(fill="x")
+
+        self.prep_images_path_button = tk.Button(self.tab4, text="Select Folder", command=self.select_prep_images_path)
+        self.prep_images_path_button.pack()
+
+        self.lorem_images_button = tk.Button(self.tab4, text="Prepare Images", command=self.prep_images)
+        self.lorem_images_button.pack()
+
+    def select_prep_images_path(self):
+        folder_path = filedialog.askdirectory()
+        self.prep_folder_path.set(folder_path)
+
+    def prep_images(self):
+        if self.is_path_variable_empty(self.prep_folder_path):
+            return print("Please select a folder to save images in.")
+        picpath = self.prep_folder_path.get()
+        process_images_in_folder(picpath)
+        print(f"Images renamed successfully!")
 
 if __name__ == "__main__":
     root = tk.Tk()

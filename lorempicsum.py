@@ -50,6 +50,3 @@ def check(dirpath):
             os.remove(file_path)
         except Exception as e:
             print(f"Error: {str(e)}")
-
-
-
