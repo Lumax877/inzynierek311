@@ -58,7 +58,7 @@ def create_mosaic(input_image_path, output_image_path, tile_directory, tile_size
             input_tile_color = input_colors.pop(0)
 
             best_match_tile = min(tiles, key=lambda tile: np.linalg.norm(input_tile_color - tile[1]))
-            best_match_tile = best_match_tile[0].resize(tile_size)
+            best_match_tile = best_match_tile[0].resize(tile_size) # there was tile size at first
             output_image.paste(best_match_tile, region)
 
     output_image.save(output_image_path)
