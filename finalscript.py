@@ -7,15 +7,16 @@ import tqdm
 
 def load_images_from_directory(directory):
     directory = str(directory)
-    image_files = [f for f in os.listdir(directory) if f.endswith(('.png', '.jpg', '.jpeg'))]
+    # image_files = [f for f in os.listdir(directory) if f.endswith(('.png', '.jpg', '.jpeg'))]
     images = []
 
-    for f in image_files:
+    for f in os.listdir(directory): # image_files
+        image_path = os.path.join(directory,f) # optional
         match = re.match(r'image_(\d+)_(\d+)_(\d+)_(\d+)\.(png|jpg|jpeg)', f)
         if match:
             i, r, g, b, _ = match.groups()
             color = tuple(map(int, [r, g, b]))
-            image_path = os.path.join(directory, f)
+            # image_path = os.path.join(directory, f)
             images.append((Image.open(image_path).convert('RGB'), color))
 
     print("Tiles loaded")
