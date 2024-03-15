@@ -159,7 +159,7 @@ class MosaicApp:
         self.progress_string.set("Generating photomosaic. This may take up to several minutes...")
         create_mosaic(input_path, output_path, tile_dir, tile_size=(tile_size, tile_size), region_size=target_region_size)
         print("Mosaic generated successfully!")
-        self.progress_string.set("Photomosaic made succesfully.")
+        self.progress_string.set("Photomosaic made successfully.")
 
     def setup_image_tab(self):
         self.num_generated_images = tk.StringVar()
