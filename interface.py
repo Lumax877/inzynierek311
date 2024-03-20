@@ -366,6 +366,23 @@ class MosaicApp:
             print("Please select a folder with valid images.")
             self.progress_string4.set("Please select a folder with valid images.")
             return
+
+        image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
+
+        all_files = os.listdir(self.prep_folder_path.get())
+
+        image_files = [f for f in all_files if os.path.isfile(os.path.join(self.prep_folder_path.get(), f)) and os.path.splitext(f)[
+            1].lower() in image_extensions]
+
+        if not image_files:
+            self.progress_string4.set("No images detected in selected folder.")
+            raise ValueError("No images detected in selected folder.")
+
+        if len(all_files) != len(image_files):
+            self.progress_string4.set("Detected non-graphic files. Cannot prepare images.")
+            raise ValueError(
+                "Detected non-graphic files. Cannot prepare images.")
+
         picpath = self.prep_folder_path.get()
         self.progress_string4.set("Preparing images...")
         process_images_in_folder(picpath)
