@@ -367,7 +367,7 @@ class MosaicApp:
             self.progress_string4.set("Please select a folder with valid images.")
             return
 
-        image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp']
+        image_extensions = ['.jpg', '.jpeg', '.png']
 
         all_files = os.listdir(self.prep_folder_path.get())
 
@@ -385,7 +385,7 @@ class MosaicApp:
 
         picpath = self.prep_folder_path.get()
         self.progress_string4.set("Preparing images...")
-        process_images_in_folder(picpath)
+        process_images_in_folder(picpath, image_files)
         self.progress_string4.set("Images renamed successfully.")
         print(f"Images renamed successfully!")
 

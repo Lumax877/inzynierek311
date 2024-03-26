@@ -16,7 +16,7 @@ def calculate_average_color(region):
     avg_color = (r // total_pixels, g // total_pixels, b // total_pixels)
     return avg_color
 
-def process_images_in_folder(folder_path):
+def process_images_in_folder(folder_path, image_files):
     if not os.path.isdir(folder_path):
         raise ValueError("Podana ścieżka nie prowadzi do folderu.")
 
