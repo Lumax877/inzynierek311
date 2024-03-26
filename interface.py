@@ -42,39 +42,39 @@ class MosaicApp:
         self.progress_string.set("Waiting for user's input data...")
 
         self.input_path_label = ttk.Label(self.tab1, text="Input Image Path:")
-        self.input_path_label.pack(pady=1)
+        self.input_path_label.pack()
 
         self.input_path_scrollbar = ttk.Scrollbar(self.tab1, orient="horizontal")
         self.input_path_entry = ttk.Entry(self.tab1, textvariable=self.input_image_path, xscrollcommand=self.input_path_scrollbar.set)
         self.input_path_scrollbar.config(command=self.input_path_entry.xview)
 
-        self.input_path_entry.pack(pady=1, fill="x")
+        self.input_path_entry.pack(fill="x")
         self.input_path_scrollbar.pack(fill="x")
 
         self.input_button = tk.Button(self.tab1, text="Select Input Image", command=self.select_input_image)
         self.input_button.pack()
 
         self.input_file_label = ttk.Label(self.tab1, text="Tile Directory Path:")
-        self.input_file_label.pack(pady=1)
+        self.input_file_label.pack()
 
         self.tile_path_scrollbar = ttk.Scrollbar(self.tab1, orient="horizontal")
         self.tile_path_entry = ttk.Entry(self.tab1, textvariable=self.tile_directory, xscrollcommand=self.tile_path_scrollbar.set)
         self.tile_path_scrollbar.config(command=self.tile_path_entry.xview)
 
-        self.tile_path_entry.pack(pady=1, fill="x")
+        self.tile_path_entry.pack(fill="x")
         self.tile_path_scrollbar.pack(fill="x")
 
         self.tile_button = tk.Button(self.tab1, text="Select Tile Directory", command=self.select_tile_directory)
         self.tile_button.pack()
 
         self.output_file_label = ttk.Label(self.tab1, text="Output Image Path:")
-        self.output_file_label.pack(pady=1)
+        self.output_file_label.pack()
 
         self.output_path_scrollbar = ttk.Scrollbar(self.tab1, orient="horizontal")
         self.output_path_entry = ttk.Entry(self.tab1, textvariable=self.output_image_path, xscrollcommand=self.output_path_scrollbar.set)
         self.output_path_scrollbar.config(command=self.output_path_entry.xview)
 
-        self.output_path_entry.pack(pady=1, fill="x")
+        self.output_path_entry.pack(fill="x")
         self.output_path_scrollbar.pack(fill="x")
 
         self.output_button = tk.Button(self.tab1, text="Select Output Image Path", command=self.select_output_image)
@@ -92,16 +92,16 @@ class MosaicApp:
         self.run_button.pack()
 
         self.info = ttk.Label(self.tab1, text="Please use buttons instead of textboxes to select required files.")
-        self.info.pack(pady=1)
+        self.info.pack()
 
         self.info2 = ttk.Label(self.tab1, text="Remember that non-square images will be resized to a square to match the place to paste.")
-        self.info2.pack(pady=1)
+        self.info2.pack()
 
         self.custom = ttk.Label(self.tab1, text= "---------------------------------------------------------------")
-        self.custom.pack(pady=1)
+        self.custom.pack()
 
         self.progress1 = ttk.Label(self.tab1, textvariable=self.progress_string)
-        self.progress1.pack(pady=1)
+        self.progress1.pack()
 
     def select_input_image(self):
         file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.png;*.jpg;*.jpeg")])
@@ -177,13 +177,13 @@ class MosaicApp:
         self.generated_image_size_entry.pack()
 
         self.folder_path_label = ttk.Label(self.tab2, text="Tile Folder Path:")
-        self.folder_path_label.pack(pady=1)
+        self.folder_path_label.pack()
 
         self.folder_path_scrollbar = ttk.Scrollbar(self.tab2, orient="horizontal")
         self.folder_path_entry = ttk.Entry(self.tab2, textvariable=self.generated_images_path, xscrollcommand=self.folder_path_scrollbar.set)
         self.folder_path_scrollbar.config(command=self.folder_path_entry.xview)
 
-        self.folder_path_entry.pack(pady=1, fill="x")
+        self.folder_path_entry.pack(fill="x")
         self.folder_path_scrollbar.pack(fill="x")
 
         self.generated_images_path_button = tk.Button(self.tab2, text="Select Folder", command=self.select_generated_images_path)
@@ -193,13 +193,13 @@ class MosaicApp:
         self.generate_images_button.pack()
 
         self.info2 = ttk.Label(self.tab2, text="Warning: all files in the selected folder will be deleted when generating starts.")
-        self.info2.pack(pady=1)
+        self.info2.pack()
 
         self.custom2 = ttk.Label(self.tab2, text="---------------------------------------------------------------")
-        self.custom2.pack(pady=1)
+        self.custom2.pack()
 
         self.progress2 = ttk.Label(self.tab2, textvariable=self.progress_string2)
-        self.progress2.pack(pady=1)
+        self.progress2.pack()
 
     def select_generated_images_path(self):
         folder_path = filedialog.askdirectory()
@@ -273,13 +273,13 @@ class MosaicApp:
         self.lorem_image_size_entry.pack()
 
         self.lorem_path_label = ttk.Label(self.tab3, text="Tile Folder Path:")
-        self.lorem_path_label.pack(pady=1)
+        self.lorem_path_label.pack()
 
         self.lorem_path_scrollbar = ttk.Scrollbar(self.tab3, orient="horizontal")
         self.lorem_path_entry = ttk.Entry(self.tab3, textvariable=self.lorem_images_path, xscrollcommand=self.lorem_path_scrollbar.set)
         self.lorem_path_scrollbar.config(command=self.lorem_path_entry.xview)
 
-        self.lorem_path_entry.pack(pady=1, fill="x")
+        self.lorem_path_entry.pack(fill="x")
         self.lorem_path_scrollbar.pack(fill="x")
 
         self.lorem_images_path_button = tk.Button(self.tab3, text="Select Folder", command=self.select_lorem_images_path)
@@ -289,13 +289,13 @@ class MosaicApp:
         self.lorem_images_button.pack()
 
         self.info = ttk.Label(self.tab3, text="Warning: all files in the selected folder will be deleted when downloading starts.")
-        self.info.pack(pady=1)
+        self.info.pack()
 
         self.custom3 = ttk.Label(self.tab3, text="---------------------------------------------------------------")
-        self.custom3.pack(pady=1)
+        self.custom3.pack()
 
         self.progress3 = ttk.Label(self.tab3, textvariable=self.progress_string3)
-        self.progress3.pack(pady=1)
+        self.progress3.pack()
 
     def select_lorem_images_path(self):
         folder_path = filedialog.askdirectory()
@@ -330,13 +330,13 @@ class MosaicApp:
         self.progress_string4.set("Waiting for user's input data...")
 
         self.prep_path_label = ttk.Label(self.tab4, text="Images Folder Path:")
-        self.prep_path_label.pack(pady=1)
+        self.prep_path_label.pack()
 
         self.prep_path_scrollbar = ttk.Scrollbar(self.tab4, orient="horizontal")
         self.prep_path_entry = ttk.Entry(self.tab4, textvariable=self.prep_folder_path, xscrollcommand=self.prep_path_scrollbar.set)
         self.prep_path_scrollbar.config(command=self.prep_path_entry.xview)
 
-        self.prep_path_entry.pack(pady=1, fill="x")
+        self.prep_path_entry.pack(fill="x")
         self.prep_path_scrollbar.pack(fill="x")
 
         self.prep_images_path_button = tk.Button(self.tab4, text="Select Folder", command=self.select_prep_images_path)
@@ -346,13 +346,13 @@ class MosaicApp:
         self.lorem_images_button.pack()
 
         self.info41 = ttk.Label(self.tab4, text="Please be aware that this program will not run unless the selected folder will contain only image files.")
-        self.info41.pack(pady=1)
+        self.info41.pack()
 
         self.custom3 = ttk.Label(self.tab4, text="---------------------------------------------------------------")
-        self.custom3.pack(pady=1)
+        self.custom3.pack()
 
         self.progress3 = ttk.Label(self.tab4, textvariable=self.progress_string4)
-        self.progress3.pack(pady=1)
+        self.progress3.pack()
 
     def select_prep_images_path(self):
         folder_path = filedialog.askdirectory()
@@ -404,20 +404,20 @@ class MosaicApp:
         self.info512 = ttk.Label(self.tab5, text="2. Lorem Picsum Generator that downloades images from \"Lorem Picsum\" webpage.")
         self.info513 = ttk.Label(self.tab5, text="If you want to use your own photos they must be renamed (prepared) by the Custom Image Preparator.")
         self.info514 = ttk.Label(self.tab5, text="You can mix pictures made by these 3 ways however you want in order to make unique tile folder.")
-        self.info51.pack(pady=1)
-        self.info52.pack(pady=1)
-        self.info53.pack(pady=1)
-        self.info54.pack(pady=1)
-        self.info55.pack(pady=1)
-        self.info56.pack(pady=1)
-        self.info57.pack(pady=1)
-        self.info58.pack(pady=1)
-        self.info59.pack(pady=1)
-        self.info510.pack(pady=1)
-        self.info511.pack(pady=1)
-        self.info512.pack(pady=1)
-        self.info513.pack(pady=1)
-        self.info514.pack(pady=1)
+        self.info51.pack()
+        self.info52.pack()
+        self.info53.pack()
+        self.info54.pack()
+        self.info55.pack()
+        self.info56.pack()
+        self.info57.pack()
+        self.info58.pack()
+        self.info59.pack()
+        self.info510.pack()
+        self.info511.pack()
+        self.info512.pack()
+        self.info513.pack()
+        self.info514.pack()
 
 if __name__ == "__main__":
     root = tk.Tk()
