@@ -391,7 +391,7 @@ class MosaicApp:
 
     def setup_help_tab(self):
         self.info51 = ttk.Label(self.tab5, text="In order to use Mosaic Generator, you must select image you want to make photomosaic of (input image)")
-        self.info52 = ttk.Label(self.tab5, text="and folder containing images that photomosaic will be made of (tile folder).")
+        self.info52 = ttk.Label(self.tab5, text="and folder containing ONLY images that photomosaic will be made of (tile folder).")
         self.info53 = ttk.Label(self.tab5, text="Also you need to write charactercistics of the photomosaic, which are region size and tile size.")
         self.info54 = ttk.Label(self.tab5, text="Region size is the size of squares that photomosaic will be \"cut\" into.")
         self.info55 = ttk.Label(self.tab5, text="The color values of each region will be calculated independently.")
