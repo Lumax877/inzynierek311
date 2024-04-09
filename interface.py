@@ -141,6 +141,11 @@ class MosaicApp:
             self.progress_string.set("Invalid input for Tile Size or Target Region Size. Please enter valid integers.")
             return
 
+        if int(self.tile_size.get()) <= 0 or int(self.target_region_size.get()) <= 0:
+            print("Tile size or Region size cannot be equal to 0 or negative.")
+            self.progress_string.set("Tile size or Region size cannot be equal to 0 or negative.")
+            return
+
         if not input_path or not tile_dir or not output_path:
             print("Please select input image, tile directory, and output image path.")
             self.progress_string.set("Please select input image, tile directory, and output image path.")
